@@ -29,7 +29,7 @@ jobs:
     - name: Verify Pushed Image
       run: docker pull mayankchandratre/paytm:latest  # Replace with your Docker Hub username and repository
 
-    - name: Deploy to EC2
+    - name: Deploy to Azure VM
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -39,4 +39,4 @@ jobs:
           sudo docker pull mayankchandratre/paytm:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
-          sudo docker run -d --name web-app -p 3005:3000 mayankchandratre/paytm:latest
+          sudo docker run -d -e DATABASE_URL=${{ secrets.DATABASE_URL }} --name web-app --restart always -p 5000:3000 mayankchandratre/paytm:latest
