@@ -39,4 +39,4 @@ jobs:
           sudo docker pull mayankchandratre/paytm:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
-          sudo docker run -d --name web-app -p 3005:3000 mayankchandratre/paytm:latest
+          sudo docker run -d --name web-app -p 3007:3000 mayankchandratre/paytm:latest
